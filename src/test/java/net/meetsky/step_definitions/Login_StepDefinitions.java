@@ -1,5 +1,6 @@
 package net.meetsky.step_definitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -51,16 +52,54 @@ public class Login_StepDefinitions {
         WebElement passwordInput = Driver.getDriver().findElement(By.id("password"));
         passwordInput.sendKeys(passwordInvalid);
     }
-    @Then("user should see {string} error")
-    public void user_should_see_error(String string) {
+    @Then("user should see Wrong username or password error")
+    public void user_should_see_error() {
         WebElement errorMessage1 = Driver.getDriver()
                 .findElement(By.xpath("//p[contains(text(),'Wrong username or password.')]"));
         errorMessage1.isDisplayed();
     }
 
 
+    @Then("user should see the Please fill out this field message.")
+    public void user_should_see_the_please_fill_out_this_field_message() {
+        WebElement passwordBox = Driver.getDriver().findElement(By.id("password"));
+        WebElement userBox = Driver.getDriver().findElement(By.id("user"));
 
+        String validMessage = passwordBox.getAttribute("validationMessage") ;
+        Assert.assertEquals(validMessage,"Please fill in this field");
 
+    }
+    @Then("user should see the Please fill out this field message on password input box")
+    public void user_should_see_the_please_fill_out_this_field_message_on_password_input_box() {
+        WebElement passwordBox = Driver.getDriver().findElement(By.id("password"));
 
+        String validMessage = passwordBox.getAttribute("validationMessage") ;
+        Assert.assertEquals(validMessage,"Please fill out this field.");
+    }
+    @Then("user should see the Please fill out this field message on username input box")
+    public void user_should_see_the_please_fill_out_this_field_message_on_username_input_box() {
+        WebElement userBox = Driver.getDriver().findElement(By.id("user"));
 
+        String validMessage = userBox.getAttribute("validationMessage") ;
+        Assert.assertEquals(validMessage,"Please fill out this field.");
+    }
+
+    @Then("user should see the password as form of dots")
+    public void userShouldSeeThePasswordAsFormOfDots() {
+        WebElement passwordBox = Driver.getDriver().findElement(By.id("password"));
+        String asFormOfDots = passwordBox.getAttribute("type");
+        Assert.assertEquals(asFormOfDots,"password");
+    }
+
+    @And("user click the eye image to see the password")
+    public void userClickTheEyeImageToSeeThePassword() {
+        WebElement eyeImage = Driver.getDriver().findElement(By.xpath("//a[@class='toggle-password']"));
+        eyeImage.click();
+    }
+    @Then("user should see the password explicitly")
+    public void userShouldSeeThePasswordExplicitly() {
+        WebElement passwordBox = Driver.getDriver().findElement(By.id("password"));
+        String asFormOfDots = passwordBox.getAttribute("type");
+        Assert.assertEquals(asFormOfDots,"text");
+    }
 }
