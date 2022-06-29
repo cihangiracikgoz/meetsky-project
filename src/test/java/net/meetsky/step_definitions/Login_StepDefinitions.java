@@ -11,6 +11,14 @@ import org.openqa.selenium.WebElement;
 
 public class Login_StepDefinitions {
 
+    @Given("user goes to login page")
+    public void userGoesToLoginPage() {
+        Driver.getDriver().get("https://qa.meetsky.net/index.php/login");
+    }
+    @When("user is on the Meetsky login page")
+    public void userIsOnTheMeetskyLoginPage() {
+    }
+
     @Given("user is on Meetsky login page")
     public void user_is_on_meetsky_login_page() {
         Driver.getDriver().get("https://qa.meetsky.net/index.php/login");
@@ -101,5 +109,33 @@ public class Login_StepDefinitions {
         WebElement passwordBox = Driver.getDriver().findElement(By.id("password"));
         String asFormOfDots = passwordBox.getAttribute("type");
         Assert.assertEquals(asFormOfDots,"text");
+    }
+
+    @When("user see the Forgot Password link")
+    public void userSeeTheForgotPasswordLink() {
+        WebElement forgotPasswordLink = Driver.getDriver().findElement(By.id("lost-password"));
+        Assert.assertTrue(forgotPasswordLink.isDisplayed());
+    }
+    @And("click Forgot Password link")
+    public void clickForgotPasswordLink() throws InterruptedException {
+        Thread.sleep(2000);
+        Driver.getDriver().findElement(By.id("lost-password")).click();
+    }
+    @Then("user should see Reset password button")
+    public void userShouldSeeResetPasswordButton() {
+        WebElement resetPasswordButton = Driver.getDriver().findElement(By.id("reset-password-submit"));
+        boolean isResetPasswordDisplayed = true;
+        Assert.assertEquals(isResetPasswordDisplayed,true);
+    }
+
+    @Then("user should see valid username and password placeholders")
+    public void userShouldSeeValidUsernameAndPasswordPlaceholders() {
+        WebElement usernameBox = Driver.getDriver().findElement(By.id("user"));
+        String usernamePlaceholder = usernameBox.getAttribute("placeholder");
+        Assert.assertEquals(usernamePlaceholder,"Username or email");
+
+        WebElement passwordBox = Driver.getDriver().findElement(By.id("password"));
+        String passwordPlaceholder = passwordBox.getAttribute("placeholder");
+        Assert.assertEquals(passwordPlaceholder,"Password");
     }
 }

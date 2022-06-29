@@ -67,6 +67,20 @@ Feature: Meetsky login functionality
       And user click the eye image to see the password
       Then user should see the password explicitly
 
+    @METSK-369
+    Scenario: User should see Forgot password link and click it after that user can see Reset Password button on the next page
+      Given user is on Meetsky login page
+      When user see the Forgot Password link
+      And click Forgot Password link
+      Then user should see Reset password button
+
+    @METSK-370
+    Scenario: User should see valid placeholders on Username and Password fields
+      Given user goes to login page
+      When user is on the Meetsky login page
+      Then user should see valid username and password placeholders
+
+
 
 
 
