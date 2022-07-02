@@ -1,4 +1,4 @@
-@METSK-302 @wip
+@METSK-302
 Feature: Meetsky login functionality
   User Story: As a user, I should be able to login.
 
