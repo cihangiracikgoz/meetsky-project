@@ -1,3 +1,4 @@
+@METSK-303 @wip
 Feature: Meetsky log out functionalty
   User Story: As a user, I should be able to log out.
 
@@ -9,7 +10,7 @@ Feature: Meetsky log out functionalty
     And user click the log out button
     Then user should come back to the login page
 
-    @wip
+  @METSK-383
   Scenario: User can not go to home page again by clicking step back button
     Given user log in with valid credentials in login page
     When user is on files page
@@ -18,7 +19,3 @@ Feature: Meetsky log out functionalty
     And user should come back to the login page
     And user click go back button
     Then user can not go to home page and stay in login page
-
-
-
-
